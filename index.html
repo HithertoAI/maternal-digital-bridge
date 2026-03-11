@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainable Maternal Health Subsidy — UI Wireframes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal:        #155E4B;
+      --teal-mid:    #1E7A60;
+      --teal-light:  #E4F3EE;
+      --teal-border: #B8DDD4;
+      --amber:       #D07210;
+      --amber-warm:  #E8931A;
+      --amber-light: #FEF3E2;
+      --shell-bg:    #EDE8E1;
+      --white:       #FFFFFF;
+      --surface:     #F8F5F1;
+      --text:        #1A1A1A;
+      --text-muted:  #6B6572;
+      --text-light:  #9A9098;
+      --border:      #D8D0C8;
+      --success:     #1B6B3A;
+      --success-bg:  #E8F5EE;
+      --success-border: #A7D7B8;
+      --danger:      #B91C1C;
+      --danger-bg:   #FEE2E2;
+      --warn-bg:     #FEF9E7;
+      --warn-border: #F5D882;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--shell-bg);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 230px; min-width: 230px;
+      background: var(--teal);
+      display: flex; flex-direction: column;
+      overflow-y: auto; z-index: 10;
+      border-right: 1px solid rgba(0,0,0,0.15);
+    }
+    .sidebar-logo {
+      padding: 18px 16px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .sidebar-logo h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px; line-height: 1.4; color: white;
+    }
+    .sidebar-logo p {
+      font-size: 9px; color: rgba(255,255,255,0.55);
+      margin-top: 3px; text-transform: uppercase; letter-spacing: 0.7px;
+    }
+    .phase-group { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .phase-label {
+      font-size: 8.5px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1px; color: rgba(255,255,255,0.45);
+      padding: 0 14px 7px;
+    }
+    .phase-device-tag {
+      font-size: 8px; background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.6); border-radius: 3px;
+      padding: 1px 5px; margin-left: 4px; font-weight: 600;
+    }
+    .s-btn {
+      display: flex; align-items: center; gap: 7px;
+      width: 100%; text-align: left;
+      padding: 7px 14px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.75);
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px; cursor: pointer; line-height: 1.3;
+      transition: all 0.12s;
+    }
+    .s-btn:hover { background: rgba(255,255,255,0.08); color: white; }
+    .s-btn.active { background: rgba(255,255,255,0.18); color: white; font-weight: 700; }
+    .s-btn .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; background: rgba(255,255,255,0.15);
+      border-radius: 4px; font-size: 9px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .s-btn.active .num { background: var(--amber-warm); color: white; }
+
+    /* ── MAIN ── */
+    .main-area {
+      flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;
+    }
+    .top-bar {
+      background: white; border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0; min-height: 60px;
+    }
+    .screen-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: var(--text);
+    }
+    .screen-info .meta {
+      font-size: 11px; color: var(--text-muted); margin-top: 1px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .device-pill {
+      background: var(--teal-light); color: var(--teal);
+      font-size: 9px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.5px; padding: 2px 7px; border-radius: 10px;
+    }
+    .nav-controls { display: flex; align-items: center; gap: 10px; }
+    .nav-btn {
+      padding: 7px 18px; border-radius: 8px; border: none;
+      font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all 0.12s;
+    }
+    .nav-btn.prev { background: var(--teal-light); color: var(--teal); }
+    .nav-btn.next { background: var(--teal); color: white; }
+    .nav-btn:hover { opacity: 0.82; }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .screen-counter { font-size: 12px; color: var(--text-muted); font-weight: 700; min-width: 50px; text-align: center; }
+
+    /* ── DEVICE AREA ── */
+    .device-area {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 20px; overflow: auto;
+    }
+
+    /* ── PHONE FRAME ── */
+    .phone-frame {
+      width: 370px; min-width: 370px;
+      background: #1A1A1A;
+      border-radius: 46px;
+      padding: 12px 12px 16px;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.45), 0 0 0 1.5px #2E2E2E, inset 0 0 0 1px #444;
+      position: relative;
+    }
+    .phone-frame::before {
+      content: ''; position: absolute;
+      top: 12px; left: 50%; transform: translateX(-50%);
+      width: 110px; height: 28px; background: #1A1A1A;
+      border-radius: 0 0 16px 16px; z-index: 10;
+    }
+    .phone-screen {
+      width: 100%; height: 750px;
+      border-radius: 36px; overflow: hidden;
+      background: white; position: relative;
+    }
+
+    /* ── TABLET FRAME ── */
+    .tablet-frame {
+      width: 760px; min-width: 760px;
+      background: #1A1A1A;
+      border-radius: 22px;
+      padding: 18px 20px;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.45), 0 0 0 1.5px #2E2E2E;
+      position: relative;
+    }
+    .tablet-frame::before {
+      content: ''; position: absolute;
+      top: 9px; left: 50%; transform: translateX(-50%);
+      width: 7px; height: 7px; background: #333; border-radius: 50%;
+    }
+    .tablet-screen {
+      width: 100%; height: 920px;
+      border-radius: 10px; overflow: hidden;
+      background: white;
+    }
+
+    /* ══════════════════════════════════
+       SHARED SCREEN UI COMPONENTS
+    ══════════════════════════════════ */
+    .scr { display: none; flex-direction: column; height: 100%; }
+    .scr.active { display: flex; }
+
+    /* Status bars */
+    .status-bar {
+      background: var(--teal); color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 16px; font-size: 11px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .status-icons { display: flex; gap: 5px; align-items: center; font-size: 10px; }
+
+    /* App header */
+    .app-hdr {
+      background: var(--teal); color: white;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0;
+    }
+    .app-hdr h3 { font-size: 15px; font-weight: 800; }
+    .app-hdr .back { font-size: 17px; cursor: pointer; opacity: 0.8; }
+    .app-hdr .logo-text { font-family: 'DM Serif Display', serif; font-size: 14px; }
+    .app-hdr .hdr-right { margin-left: auto; font-size: 11px; opacity: 0.75; text-align: right; }
+
+    /* HEW step sub-bar */
+    .step-bar {
+      background: var(--teal-mid); color: rgba(255,255,255,0.9);
+      padding: 6px 16px; font-size: 10.5px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    }
+    .step-bar .step-count { margin-left: auto; opacity: 0.65; }
+
+    /* Screen body */
+    .scr-body {
+      flex: 1; overflow-y: auto;
+      padding: 16px;
+      background: var(--surface);
+    }
+    .scr-body.white-bg { background: white; }
+
+    /* Tablet layout: wider body */
+    .tablet-body {
+      flex: 1; overflow-y: auto;
+      padding: 24px 28px;
+      background: var(--surface);
+    }
+
+    /* Typography */
+    .serif-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: var(--text); margin-bottom: 4px;
+    }
+    .serif-title.lg { font-size: 26px; }
+    .page-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+
+    /* Cards */
+    .card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px; margin-bottom: 12px;
+    }
+    .card.success { background: var(--success-bg); border-color: var(--success-border); }
+    .card.warn { background: var(--warn-bg); border-color: var(--warn-border); }
+    .card.amber { background: var(--amber-light); border-color: #F5C87A; }
+
+    /* Buttons */
+    .btn {
+      display: block; width: 100%;
+      padding: 13px 20px; border-radius: 12px; border: none;
+      font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800;
+      cursor: pointer; text-align: center; transition: opacity 0.12s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn.primary { background: var(--teal); color: white; }
+    .btn.secondary { background: white; color: var(--teal); border: 2px solid var(--teal); }
+    .btn.amber { background: var(--amber-warm); color: white; }
+    .btn.sm {
+      padding: 9px 16px; font-size: 13px; border-radius: 8px; width: auto; display: inline-block;
+    }
+    .btn-row { display: flex; gap: 10px; margin-top: 12px; }
+
+    /* Forms */
+    .form-group { margin-bottom: 14px; }
+    .form-label {
+      font-size: 10.5px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--text-muted); display: block; margin-bottom: 5px;
+    }
+    .form-input, .form-select {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 9px;
+      padding: 10px 12px; font-family: 'Nunito', sans-serif;
+      font-size: 14px; color: var(--text); background: white;
+    }
+    .form-input::placeholder { color: var(--text-light); }
+    .form-input.filled { background: var(--teal-light); border-color: var(--teal-border); font-weight: 700; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 20px;
+      font-size: 11px; font-weight: 800;
+    }
+    .badge.success { background: var(--success-bg); color: var(--success); }
+    .badge.info { background: var(--teal-light); color: var(--teal); }
+    .badge.warn { background: var(--warn-bg); color: var(--amber); }
+    .badge.danger { background: var(--danger-bg); color: var(--danger); }
+
+    /* Step dots */
+    .step-dots { display: flex; justify-content: center; gap: 7px; padding: 10px 0 4px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .dot.done { background: var(--teal); }
+    .dot.active { background: var(--teal); width: 22px; border-radius: 4px; }
+
+    /* Info rows */
+    .info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .lbl { color: var(--text-muted); font-size: 12px; }
+    .info-row .val { font-weight: 800; }
+
+    /* Check items */
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .chk {
+      width: 22px; height: 22px; min-width: 22px;
+      border: 2px solid var(--teal); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; background: white;
+    }
+    .chk.checked { background: var(--teal); color: white; }
+
+    /* Fingerprint UI */
+    .fp-area {
+      border: 2px dashed var(--teal); border-radius: 16px;
+      padding: 28px 20px; text-align: center;
+      background: var(--teal-light); margin: 14px 0;
+    }
+    .fp-icon { font-size: 52px; display: block; line-height: 1; }
+    .finger-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0;
+    }
+    .f-item {
+      background: var(--teal-light); border: 1.5px solid var(--teal-border);
+      border-radius: 8px; padding: 8px 4px; text-align: center;
+    }
+    .f-item.cap { background: var(--teal); border-color: var(--teal); }
+    .f-item .fi { font-size: 18px; display: block; }
+    .f-item .fn { font-size: 7.5px; color: var(--text-muted); margin-top: 2px; font-weight: 700; }
+    .f-item.cap .fn { color: rgba(255,255,255,0.8); }
+
+    /* Hardware items */
+    .hw-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px; background: white;
+      border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 10px;
+    }
+    .hw-icon { font-size: 30px; flex-shrink: 0; }
+    .hw-info h4 { font-size: 14px; font-weight: 800; }
+    .hw-info p { font-size: 11px; color: var(--text-muted); }
+    .hw-right { margin-left: auto; }
+
+    /* Onboard visual */
+    .ob-visual {
+      background: linear-gradient(140deg, var(--teal-light) 0%, #F0FAF6 100%);
+      border-radius: 18px; padding: 28px 20px; text-align: center; margin: 10px 0 14px;
+    }
+    .ob-visual .big-icon { font-size: 80px; line-height: 1; display: block; }
+    .ob-visual h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: var(--teal); margin-top: 12px;
+    }
+    .ob-visual p { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+    /* Instruction items (onboarding) */
+    .ob-step {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px; margin-bottom: 10px;
+    }
+    .ob-step .step-icon { font-size: 28px; flex-shrink: 0; }
+    .ob-step h4 { font-size: 14px; font-weight: 800; }
+    .ob-step p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Big icon tile (beneficiary dashboard) */
+    .icon-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+    .icon-tile {
+      background: white; border: 1.5px solid var(--border);
+      border-radius: 18px; padding: 20px 12px; text-align: center; cursor: pointer;
+    }
+    .icon-tile .ti { font-size: 40px; display: block; margin-bottom: 8px; }
+    .icon-tile .tl { font-size: 13px; font-weight: 800; color: var(--text); }
+    .icon-tile .ts { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Welcome screen */
+    .welcome-screen {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 32px 24px; background: white; height: 100%;
+    }
+    .welcome-screen .w-icon { font-size: 88px; line-height: 1; margin-bottom: 16px; }
+    .welcome-screen h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px; color: var(--teal); margin-bottom: 8px;
+    }
+    .welcome-screen .tagline { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; }
+    .welcome-screen .hew-note {
+      background: var(--teal-light); border-radius: 10px;
+      padding: 10px 14px; font-size: 12px; color: var(--teal);
+      margin-bottom: 24px; font-weight: 600;
+    }
+
+    /* Wallet card */
+    .wallet-card {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+      border-radius: 16px; padding: 18px 20px; color: white; margin-bottom: 14px;
+    }
+    .wallet-card .wc-label { font-size: 11px; opacity: 0.75; margin-bottom: 3px; }
+    .wallet-card .wc-amount { font-family: 'DM Serif Display', serif; font-size: 38px; }
+    .wallet-card .wc-sub { font-size: 12px; opacity: 0.7; margin-top: 6px; }
+    .wallet-card .wc-row { display: flex; justify-content: space-between; align-items: flex-end; }
+    .wallet-card .wc-id { font-size: 11px; opacity: 0.6; font-weight: 700; letter-spacing: 0.5px; }
+
+    /* Certificate */
+    .certificate {
+      border: 2.5px double var(--teal); border-radius: 14px;
+      padding: 18px; background: white; text-align: center;
+    }
+    .certificate .cert-flag { font-size: 24px; display: block; margin-bottom: 6px; }
+    .certificate h3 {
+      font-family: 'DM Serif Display', serif; font-size: 15px;
+      color: var(--teal); border-bottom: 1px solid var(--border);
+      padding-bottom: 8px; margin-bottom: 12px;
+    }
+    .cert-row {
+      display: flex; justify-content: space-between;
+      font-size: 12px; padding: 5px 0; border-bottom: 1px dotted var(--border);
+    }
+    .cert-row:last-child { border: none; }
+    .cert-row .cl { color: var(--text-muted); }
+    .cert-row .cv { font-weight: 800; }
+    .cert-seal { margin-top: 14px; font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+    /* Progress chain (HEW) */
+    .progress-chain {
+      display: flex; align-items: center; margin: 10px 0 18px;
+    }
+    .pc-step { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .pc-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: var(--text-muted);
+      background: var(--border);
+    }
+    .pc-circle.done { background: var(--teal); color: white; }
+    .pc-circle.current { background: var(--amber-warm); color: white; }
+    .pc-label {
+      font-size: 8px; color: var(--text-muted); text-align: center;
+      margin-top: 4px; max-width: 54px; line-height: 1.2;
+    }
+    .pc-line { flex: 1; height: 2px; background: var(--border); margin: 0 2px; margin-bottom: 18px; }
+    .pc-line.done { background: var(--teal); }
+
+    /* Alert banners */
+    .alert {
+      border-radius: 0 9px 9px 0; padding: 10px 12px;
+      font-size: 12px; font-weight: 600;
+      border-left: 4px solid; margin-bottom: 12px;
+    }
+    .alert.info { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
+    .alert.warn { background: var(--warn-bg); border-color: var(--amber-warm); color: var(--amber); }
+    .alert.success { background: var(--success-bg); border-color: var(--success); color: var(--success); }
+
+    /* Section label */
+    .sec-label {
+      font-size: 10px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.7px; color: var(--text-muted); margin-bottom: 8px; margin-top: 16px;
+    }
+    .sec-label:first-child { margin-top: 0; }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+    /* Bottom nav */
+    .bottom-nav {
+      background: white; border-top: 1px solid var(--border);
+      display: flex; padding: 6px 0 8px; flex-shrink: 0;
+    }
+    .bn-item {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      gap: 2px; font-size: 9px; color: var(--text-muted); font-weight: 700; padding: 4px 0;
+    }
+    .bn-item.active { color: var(--teal); }
+    .bn-icon { font-size: 20px; }
+
+    /* Success screen */
+    .success-screen {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 28px 20px;
+    }
+    .success-circle {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--success-bg); border: 3px solid var(--success);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px; margin-bottom: 16px;
+    }
+    .success-screen h2 {
+      font-family: 'DM Serif Display', serif; font-size: 24px;
+      color: var(--success); margin-bottom: 6px;
+    }
+    .success-screen p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+
+    /* Linked accounts */
+    .linked-row {
+      display: flex; align-items: center; gap: 10px;
+      background: white; border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 12px; margin-bottom: 8px;
+    }
+    .linked-row .avatar {
+      width: 40px; height: 40px; border-radius: 50%; font-size: 22px;
+      background: var(--teal-light); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .linked-row h4 { font-size: 13px; font-weight: 800; }
+    .linked-row p { font-size: 11px; color: var(--text-muted); }
+    .linked-row .lr-right { margin-left: auto; }
+
+    /* Fayda ID display */
+    .fayda-id-box {
+      background: var(--teal); color: white; border-radius: 12px;
+      padding: 14px 18px; text-align: center; margin: 12px 0;
+    }
+    .fayda-id-box .fid-label { font-size: 10px; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.6px; }
+    .fayda-id-box .fid-num { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: 2px; }
+    .fayda-id-box .fid-name { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h1>Sustainable Maternal Health Subsidy</h1>
+    <p>UI Wireframe Demo · Ethiopia</p>
+  </div>
+
+  <div class="phase-group">
+    <div class="phase-label">Phase 1 — HEW Enrollment <span class="phase-device-tag">TABLET</span></div>
+    <button class="s-btn active" onclick="goTo(0)"><span class="num">1</span>Initial Assessment</button>
+    <button class="s-btn" onclick="goTo(1)"><span class="num">2</span>Informed Consent</button>
+    <button class="s-btn" onclick="goTo(2)"><span class="num">3</span>Patient Details</button>
+    <button class="s-btn" onclick="goTo(3)"><span class="num">4</span>Identity Check</button>
+    <button class="s-btn" onclick="goTo(4)"><span class="num">5</span>Biometric Enrollment</button>
+    <button class="s-btn" onclick="goTo(5)"><span class="num">6</span>Fayda ID Created</button>
+    <button class="s-btn" onclick="goTo(6)"><span class="num">7</span>Hardware Issuance</button>
+  </div>
+
+  <div class="phase-group">
+    <div class="phase-label">Phase 2 — Onboarding <span class="phase-device-tag">PHONE</span></div>
+    <button class="s-btn" onclick="goTo(7)"><span class="num">8</span>Welcome Screen</button>
+    <button class="s-btn" onclick="goTo(8)"><span class="num">9</span>Your Phone</button>
+    <button class="s-btn" onclick="goTo(9)"><span class="num">10</span>Your Health App</button>
+    <button class="s-btn" onclick="goTo(10)"><span class="num">11</span>Your Wallet</button>
+    <button class="s-btn" onclick="goTo(11)"><span class="num">12</span>Stay Connected</button>
+    <button class="s-btn" onclick="goTo(12)"><span class="num">13</span>e-Signature</button>
+    <button class="s-btn" onclick="goTo(13)"><span class="num">14</span>Home Dashboard</button>
+  </div>
+
+  <div class="phase-group">
+    <div class="phase-label">Phase 3 — Birth Registration</div>
+    <button class="s-btn" onclick="goTo(14)"><span class="num">15</span>Birth Consent <span class="phase-device-tag">PHONE</span></button>
+    <button class="s-btn" onclick="goTo(15)"><span class="num">16</span>Record Birth <span class="phase-device-tag">TABLET</span></button>
+    <button class="s-btn" onclick="goTo(16)"><span class="num">17</span>Birth Registered! <span class="phase-device-tag">PHONE</span></button>
+    <button class="s-btn" onclick="goTo(17)"><span class="num">18</span>Birth Certificate <span class="phase-device-tag">PHONE</span></button>
+    <button class="s-btn" onclick="goTo(18)"><span class="num">19</span>Infant Enrolled <span class="phase-device-tag">PHONE</span></button>
+    <button class="s-btn" onclick="goTo(19)"><span class="num">20</span>Family Dashboard <span class="phase-device-tag">PHONE</span></button>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
+<main class="main-area">
+  <div class="top-bar">
+    <div class="screen-info">
+      <h2 id="top-title">Initial Assessment</h2>
+      <div class="meta">
+        <span id="top-phase">Phase 1 — HEW Enrollment</span>
+        <span class="device-pill" id="top-device">📱 Tablet</span>
+      </div>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn prev" onclick="goTo(currentIndex-1)" id="btn-prev" disabled>← Prev</button>
+      <span class="screen-counter" id="counter">1 / 20</span>
+      <button class="nav-btn next" onclick="goTo(currentIndex+1)" id="btn-next">Next →</button>
+    </div>
+  </div>
+
+  <div class="device-area">
+    <!-- Phone frame (shown for phone screens) -->
+    <div class="phone-frame" id="phone-frame" style="display:none">
+      <div class="phone-screen" id="phone-screen"></div>
+    </div>
+    <!-- Tablet frame (shown for tablet screens) -->
+    <div class="tablet-frame" id="tablet-frame" style="display:none">
+      <div class="tablet-screen" id="tablet-screen"></div>
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN TEMPLATES (hidden — injected into frames via JS)
+══════════════════════════════════════════════════════════════════ -->
+<div id="templates" style="display:none">
+
+  <!-- ══════════ S01: INITIAL ASSESSMENT (TABLET) ══════════ -->
+  <div id="s01">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 09:41 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <div>
+        <div class="logo-text">HealthBridge HEW Portal</div>
+        <div style="font-size:10px;opacity:0.7">New Patient Registration</div>
+      </div>
+      <div class="hdr-right">Woreda Health Office<br>Oromia Region</div>
+    </div>
+    <div class="step-bar">
+      <span>Step 1 of 7</span>
+      <span style="font-size:12px">Initial Assessment</span>
+      <span class="step-count">◼◻◻◻◻◻◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="progress-chain">
+        <div class="pc-step"><div class="pc-circle current">1</div><div class="pc-label">Initial Assessment</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">2</div><div class="pc-label">Consent</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">3</div><div class="pc-label">Patient Details</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">4</div><div class="pc-label">ID Check</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">5</div><div class="pc-label">Biometrics</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">6</div><div class="pc-label">Fayda Created</div></div>
+        <div class="pc-line"></div>
+        <div class="pc-step"><div class="pc-circle">7</div><div class="pc-label">Hardware</div></div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <div class="serif-title">Initial Assessment</div>
+          <div class="page-sub">Confirm eligibility before beginning registration</div>
+          <div class="alert info">🏥 This session will create a new patient record. Ensure the beneficiary is present before proceeding.</div>
+          <div class="form-group">
+            <label class="form-label">Is the patient pregnant or recently delivered?</label>
+            <div style="display:flex;gap:12px;margin-top:6px">
+              <button style="flex:1;padding:14px;background:var(--teal);color:white;border:none;border-radius:10px;font-family:Nunito,sans-serif;font-size:15px;font-weight:800;cursor:pointer">✅ Yes — Confirmed</button>
+              <button style="flex:1;padding:14px;background:white;color:var(--text-muted);border:2px solid var(--border);border-radius:10px;font-family:Nunito,sans-serif;font-size:14px;cursor:pointer">No</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Approximate Gestational Age</label>
+            <select class="form-select">
+              <option>Select gestational age...</option>
+              <option selected>14–26 weeks (2nd trimester)</option>
+              <option>27–40 weeks (3rd trimester)</option>
+              <option>Recently delivered (&lt; 6 months)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Does the patient have an existing Fayda ID?</label>
+            <div style="display:flex;gap:12px;margin-top:6px">
+              <button style="flex:1;padding:11px;background:white;color:var(--text-muted);border:2px solid var(--border);border-radius:10px;font-family:Nunito,sans-serif;font-size:13px;cursor:pointer">Yes — Enter ID</button>
+              <button style="flex:1;padding:11px;background:var(--teal-light);color:var(--teal);border:2px solid var(--teal-border);border-radius:10px;font-family:Nunito,sans-serif;font-size:13px;font-weight:800;cursor:pointer">⚠ No / Unknown</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="sec-label">Eligibility Criteria</div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Currently pregnant or delivered within 6 months</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Resident of eligible kebele or urban ward</div></div>
+            <div class="check-item"><div class="chk">·</div><div>Meets income eligibility threshold</div></div>
+            <div class="check-item"><div class="chk">·</div><div>No prior active subsidy enrollment</div></div>
+          </div>
+          <div class="card warn">
+            <strong style="font-size:12px">⚠ Note for HEW</strong>
+            <p style="font-size:12px;margin-top:5px;color:var(--text-muted)">If the patient has no government-issued ID, a sworn statement from a kebele elder or village leader is accepted for Fayda enrollment.</p>
+          </div>
+          <div class="card" style="margin-top:0">
+            <div class="sec-label">Today's Session</div>
+            <div class="info-row"><span class="lbl">Clinic</span><span class="val">Adama HC — Unit 4</span></div>
+            <div class="info-row"><span class="lbl">HEW</span><span class="val">Tigist Haile</span></div>
+            <div class="info-row"><span class="lbl">Date</span><span class="val">11 Mar 2026</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn primary" style="margin-top:8px">Continue to Consent →</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S02: INFORMED CONSENT (TABLET) ══════════ -->
+  <div id="s02">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 09:44 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Informed Consent</div></div>
+    </div>
+    <div class="step-bar">
+      <span>Step 2 of 7</span>
+      <span style="font-size:12px">Informed Consent</span>
+      <span class="step-count">◼◼◻◻◻◻◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="form-row">
+        <div>
+          <div class="serif-title">Informed Consent</div>
+          <div class="page-sub">Read aloud to the beneficiary. Confirm she understands before proceeding.</div>
+          <div class="card" style="background:var(--teal-light);border-color:var(--teal-border)">
+            <div style="font-family:'DM Serif Display',serif;font-size:14px;color:var(--teal);margin-bottom:8px">Consent Statement</div>
+            <p style="font-size:13px;line-height:1.7;color:var(--text)">
+              I understand that I am enrolling in Ethiopia's Sustainable Maternal Health Subsidy programme. I agree that my identity, biometric, and health information will be securely stored in the national Fayda identity system. This information will be used to deliver health subsidies and facilitate birth registration for my child. I understand that I may withdraw consent at any time by contacting my health extension worker.
+            </p>
+          </div>
+          <div class="sec-label" style="margin-top:14px">Patient Confirms She Understands</div>
+          <div class="check-item"><div class="chk checked">✓</div><div><strong>Programme purpose</strong> — health subsidies and child registration</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div><strong>Identity enrollment</strong> — biometrics stored in Fayda system</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div><strong>Data sharing</strong> — health data shared with national registries</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div><strong>Right to withdraw</strong> — she may opt out at any time</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div><strong>Device issuance</strong> — a mobile phone, SIM, and charger will be provided</div></div>
+        </div>
+        <div>
+          <div class="sec-label">Patient Signature</div>
+          <div style="border:2px dashed var(--border);border-radius:14px;background:#FAFAFA;height:160px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;margin-bottom:12px">
+            <span style="font-size:32px">✍️</span>
+            <span style="font-size:12px;color:var(--text-muted)">Patient signs or places thumbprint here</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Witness (HEW Name)</label>
+            <input class="form-input filled" value="Tigist Haile" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date &amp; Time</label>
+            <input class="form-input filled" value="11 March 2026  09:44" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Consent Method</label>
+            <select class="form-select">
+              <option selected>Digital signature on tablet</option>
+              <option>Paper form (scan attached)</option>
+              <option>Thumbprint on tablet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Language of Consent</label>
+            <select class="form-select">
+              <option>Amharic</option>
+              <option selected>Afaan Oromo</option>
+              <option>Somali</option>
+              <option>Tigrinya</option>
+            </select>
+          </div>
+          <button class="btn primary">Consent Recorded — Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S03: PATIENT DETAILS (TABLET) ══════════ -->
+  <div id="s03">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 09:51 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Patient Details</div></div>
+    </div>
+    <div class="step-bar">
+      <span>Step 3 of 7</span>
+      <span style="font-size:12px">Patient Details</span>
+      <span class="step-count">◼◼◼◻◻◻◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="serif-title">Patient Details</div>
+      <div class="page-sub">Enter patient information as it appears on the available identity document.</div>
+      <div class="form-row">
+        <div>
+          <div class="sec-label">Identity Information</div>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" placeholder="As on identity document">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Date of Birth</label>
+              <input class="form-input" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Age (approx.)</label>
+              <input class="form-input" placeholder="Years">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Identity Document Type</label>
+            <select class="form-select">
+              <option>Select ID type...</option>
+              <option>Kebele ID Card</option>
+              <option selected>Paper ID (national)</option>
+              <option>Village Elder Statement</option>
+              <option>Voter's Registration Card</option>
+              <option>No document — verbal declaration</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ID Document Number (if available)</label>
+            <input class="form-input" placeholder="Leave blank if not available">
+          </div>
+          <div class="sec-label">Location</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Region</label>
+              <select class="form-select"><option selected>Oromia</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Woreda</label>
+              <input class="form-input" placeholder="Woreda name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kebele / Village</label>
+            <input class="form-input" placeholder="Village or kebele name">
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Health Information</div>
+          <div class="form-group">
+            <label class="form-label">Estimated Due Date / Delivery Date</label>
+            <input class="form-input" placeholder="DD/MM/YYYY">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of Previous Pregnancies</label>
+            <select class="form-select">
+              <option>Select...</option><option selected>1 (primigravida)</option><option>2</option><option>3+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Language</label>
+            <select class="form-select">
+              <option>Amharic</option>
+              <option selected>Afaan Oromo</option>
+              <option>Somali</option>
+              <option>Tigrinya</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact / Next of Kin Phone</label>
+            <input class="form-input" placeholder="+251 — or leave blank">
+          </div>
+          <div class="card warn" style="margin-top:16px">
+            <strong style="font-size:12px">ℹ️ Village Elder Statement</strong>
+            <p style="font-size:12px;margin-top:5px;color:var(--text-muted)">If selected as ID type, the elder's name, role, and kebele must be recorded below. A photo of the signed letter should be attached.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Elder Name &amp; Role (if applicable)</label>
+            <input class="form-input" placeholder="Name — Role — Kebele">
+          </div>
+          <button class="btn primary" style="margin-top:4px">Save &amp; Check Identity →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S04: IDENTITY CHECK (TABLET) ══════════ -->
+  <div id="s04">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 09:58 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Fayda Identity Check</div></div>
+    </div>
+    <div class="step-bar">
+      <span>Step 4 of 7</span>
+      <span style="font-size:12px">Fayda Registry Check</span>
+      <span class="step-count">◼◼◼◼◻◻◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="form-row">
+        <div>
+          <div class="serif-title">Identity Check</div>
+          <div class="page-sub">Searching the Fayda national registry against patient details</div>
+          <div class="card" style="background:var(--teal-light);border-color:var(--teal-border);margin-bottom:14px">
+            <div class="sec-label" style="margin-top:0">Query Submitted</div>
+            <div class="info-row"><span class="lbl">Full Name</span><span class="val">Almaz Bekele</span></div>
+            <div class="info-row"><span class="lbl">Date of Birth</span><span class="val">~1998 (approx. 28 yrs)</span></div>
+            <div class="info-row"><span class="lbl">Region</span><span class="val">Oromia</span></div>
+            <div class="info-row"><span class="lbl">ID Type Provided</span><span class="val">Paper ID (partial)</span></div>
+            <div class="info-row"><span class="lbl">Query Time</span><span class="val">09:58:04</span></div>
+          </div>
+
+          <div style="border:2px solid var(--danger);background:var(--danger-bg);border-radius:14px;padding:20px;text-align:center;margin-bottom:16px">
+            <div style="font-size:42px;margin-bottom:8px">🔍</div>
+            <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--danger);margin-bottom:6px">No Fayda ID Found</div>
+            <div style="font-size:13px;color:var(--text-muted)">No existing record matched this patient in the Fayda registry. She will need to be enrolled as a new beneficiary.</div>
+          </div>
+
+          <div class="alert warn">⚠ ABIS checked — no biometric or demographic match. Unique identity confirmed: no duplicate risk detected.</div>
+          <div class="alert info">➡ The system will now initiate a new Fayda enrollment for this patient. This will create a permanent national digital identity.</div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="sec-label" style="margin-top:0">What Happens Next</div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Biometric data (fingerprints + photo) will be collected</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>A new Fayda ID will be generated and linked to patient</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Maternal subsidy enrollment will trigger automatically</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>A phone, SIM card, and solar charger will be issued</div></div>
+          </div>
+          <div class="card">
+            <div class="sec-label" style="margin-top:0">Registry Response</div>
+            <div class="info-row"><span class="lbl">System</span><span class="val">Fayda ABIS v2.3</span></div>
+            <div class="info-row"><span class="lbl">Result</span><span class="val badge danger">● NO MATCH</span></div>
+            <div class="info-row"><span class="lbl">Duplicate Risk</span><span class="val badge success">✓ Clear</span></div>
+            <div class="info-row"><span class="lbl">Response Time</span><span class="val">1.2s</span></div>
+          </div>
+          <div class="card warn">
+            <strong style="font-size:12px">⚠ If a duplicate is suspected</strong>
+            <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">Do not proceed. Flag the case and contact the regional Fayda office for manual deduplication review.</p>
+          </div>
+          <button class="btn primary">Begin Biometric Enrollment →</button>
+          <button class="btn secondary" style="margin-top:8px">Re-query with Different Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S05: BIOMETRIC ENROLLMENT (TABLET) ══════════ -->
+  <div id="s05">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 10:05 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Biometric Enrollment</div></div>
+    </div>
+    <div class="step-bar">
+      <span>Step 5 of 7</span>
+      <span style="font-size:12px">Biometric Data Collection</span>
+      <span class="step-count">◼◼◼◼◼◻◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="serif-title">Biometric Enrollment</div>
+      <div class="page-sub">Capture all ten fingerprints and a facial photograph. Ask the patient to relax her hands.</div>
+      <div class="form-row">
+        <div>
+          <div class="sec-label">Fingerprint Capture</div>
+          <div class="alert info" style="margin-bottom:12px">Place the patient's finger firmly on the scanner. Hold until the indicator turns green.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
+            <div>
+              <div style="text-align:center;font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:8px">LEFT HAND</div>
+              <div class="finger-grid" style="grid-template-columns:repeat(5,1fr)">
+                <div class="f-item cap"><span class="fi">👍</span><span class="fn" style="color:rgba(255,255,255,0.8)">Thumb</span></div>
+                <div class="f-item cap"><span class="fi">☝️</span><span class="fn" style="color:rgba(255,255,255,0.8)">Index</span></div>
+                <div class="f-item cap"><span class="fi">🖕</span><span class="fn" style="color:rgba(255,255,255,0.8)">Middle</span></div>
+                <div class="f-item" style="background:var(--warn-bg);border-color:var(--warn-border)"><span class="fi">💍</span><span class="fn">Ring</span></div>
+                <div class="f-item"><span class="fi">🤙</span><span class="fn">Pinky</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="text-align:center;font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:8px">RIGHT HAND</div>
+              <div class="finger-grid" style="grid-template-columns:repeat(5,1fr)">
+                <div class="f-item cap"><span class="fi">👍</span><span class="fn" style="color:rgba(255,255,255,0.8)">Thumb</span></div>
+                <div class="f-item cap"><span class="fi">☝️</span><span class="fn" style="color:rgba(255,255,255,0.8)">Index</span></div>
+                <div class="f-item"><span class="fi">🖕</span><span class="fn">Middle</span></div>
+                <div class="f-item"><span class="fi">💍</span><span class="fn">Ring</span></div>
+                <div class="f-item"><span class="fi">🤙</span><span class="fn">Pinky</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="background:var(--teal-light);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;font-size:13px;font-weight:700">
+            <span style="color:var(--teal)">✓ Captured: 5 / 10</span>
+            <span style="color:var(--amber)">⏳ Remaining: 5</span>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Facial Photograph</div>
+          <div style="background:var(--teal-light);border:2px dashed var(--teal-border);border-radius:14px;height:160px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;margin-bottom:12px">
+            <span style="font-size:44px">📸</span>
+            <span style="font-size:12px;color:var(--teal);font-weight:700">Tap to capture photo</span>
+            <span style="font-size:10px;color:var(--text-muted)">Face must be clearly visible, neutral expression</span>
+          </div>
+          <div class="sec-label">Quality Check</div>
+          <div class="info-row"><span class="lbl">Left Thumb</span><span class="val badge success">✓ Good</span></div>
+          <div class="info-row"><span class="lbl">Left Index</span><span class="val badge success">✓ Good</span></div>
+          <div class="info-row"><span class="lbl">Left Middle</span><span class="val badge success">✓ Good</span></div>
+          <div class="info-row"><span class="lbl">Left Ring</span><span class="val badge warn">⏳ Pending</span></div>
+          <div class="info-row"><span class="lbl">Photo</span><span class="val badge warn">⏳ Pending</span></div>
+          <div class="card warn" style="margin-top:12px">
+            <strong style="font-size:12px">⚠ Capture Tips</strong>
+            <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">If a finger is injured or missing, tap and hold that finger's button to mark it as unavailable. A minimum of 6 quality prints is required.</p>
+          </div>
+          <button class="btn primary" style="opacity:0.5;pointer-events:none">Submit Biometrics (complete capture first)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S06: FAYDA ID CREATED (TABLET) ══════════ -->
+  <div id="s06">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 10:18 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Enrollment Complete</div></div>
+    </div>
+    <div class="step-bar" style="background:#1B6B3A">
+      <span>Step 6 of 7</span>
+      <span style="font-size:12px">✓ Fayda ID Successfully Created</span>
+      <span class="step-count">◼◼◼◼◼◼◻</span>
+    </div>
+    <div class="tablet-body">
+      <div class="form-row">
+        <div>
+          <div style="text-align:center;padding:20px 0 10px">
+            <div style="width:88px;height:88px;border-radius:50%;background:var(--success-bg);border:3px solid var(--success);display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 14px">✅</div>
+            <div class="serif-title lg">Fayda ID Created</div>
+            <div class="page-sub">A national digital identity has been established for this patient.</div>
+          </div>
+          <div class="fayda-id-box">
+            <div class="fid-label">National Fayda Identification Number</div>
+            <div class="fid-num">ETH–ORM–2026–847391</div>
+            <div class="fid-name">Almaz Bekele · Oromia Region</div>
+          </div>
+          <div class="card success">
+            <div class="sec-label" style="margin-top:0">Actions Triggered Automatically</div>
+            <div class="check-item"><div class="chk checked">✓</div><div><strong>Maternal subsidy enrollment initiated</strong> — EthSwitch G2P wallet provisioning in progress</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div><strong>CRVS record created</strong> — birth registration pathway linked to Fayda ID</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div><strong>HEW notification sent</strong> — subsidy confirmation expected within 24 hrs</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div><strong>Hardware issuance authorized</strong> — proceed to assign device</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="sec-label" style="margin-top:0">Patient Record Summary</div>
+            <div class="info-row"><span class="lbl">Full Name</span><span class="val">Almaz Bekele</span></div>
+            <div class="info-row"><span class="lbl">Fayda ID</span><span class="val" style="color:var(--teal)">ETH–ORM–2026–847391</span></div>
+            <div class="info-row"><span class="lbl">Date of Birth</span><span class="val">Approx. 1998</span></div>
+            <div class="info-row"><span class="lbl">Region / Kebele</span><span class="val">Oromia / Adama W4</span></div>
+            <div class="info-row"><span class="lbl">Est. Due Date</span><span class="val">June 2026</span></div>
+            <div class="info-row"><span class="lbl">Enrolled</span><span class="val">11 March 2026</span></div>
+            <div class="info-row"><span class="lbl">Enrolling HEW</span><span class="val">Tigist Haile</span></div>
+          </div>
+          <div class="card">
+            <div class="sec-label" style="margin-top:0">Subsidy Status</div>
+            <div class="info-row"><span class="lbl">Programme</span><span class="val">Maternal Health Subsidy</span></div>
+            <div class="info-row"><span class="lbl">Status</span><span class="val badge warn">⏳ Provisioning</span></div>
+            <div class="info-row"><span class="lbl">First Payment</span><span class="val">Within 48 hours</span></div>
+            <div class="info-row"><span class="lbl">Wallet</span><span class="val">Pending device issuance</span></div>
+          </div>
+          <button class="btn primary">Proceed to Hardware Issuance →</button>
+          <button class="btn secondary" style="margin-top:8px">Print Record</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S07: HARDWARE ISSUANCE (TABLET) ══════════ -->
+  <div id="s07">
+    <div class="status-bar">
+      <span>HEW Portal · Woreda Clinic</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 10:24 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Hardware Issuance</div></div>
+    </div>
+    <div class="step-bar">
+      <span>Step 7 of 7</span>
+      <span style="font-size:12px">Assign &amp; Confirm Hardware</span>
+      <span class="step-count">◼◼◼◼◼◼◼</span>
+    </div>
+    <div class="tablet-body">
+      <div class="serif-title">Hardware Issuance</div>
+      <div class="page-sub">Assign the items below to <strong>Almaz Bekele</strong>. Scan or enter serial numbers, then confirm receipt with the patient.</div>
+      <div class="form-row">
+        <div>
+          <div class="hw-item">
+            <div class="hw-icon">📱</div>
+            <div class="hw-info">
+              <h4>Mobile Handset</h4>
+              <p>itel A70 · Android 13 Go · 4G enabled</p>
+            </div>
+            <div class="hw-right"><span class="badge success">✓ Assigned</span></div>
+          </div>
+          <div class="form-group" style="margin-left:44px">
+            <label class="form-label">IMEI / Serial Number</label>
+            <input class="form-input filled" value="352041120837491">
+          </div>
+
+          <div class="hw-item">
+            <div class="hw-icon">📶</div>
+            <div class="hw-info">
+              <h4>SIM Card</h4>
+              <p>Ethio Telecom · National roaming enabled</p>
+            </div>
+            <div class="hw-right"><span class="badge success">✓ Assigned</span></div>
+          </div>
+          <div class="form-group" style="margin-left:44px">
+            <label class="form-label">SIM ICCID</label>
+            <input class="form-input filled" value="894251032948761920">
+          </div>
+
+          <div class="hw-item">
+            <div class="hw-icon">☀️</div>
+            <div class="hw-info">
+              <h4>Solar Charger</h4>
+              <p>5W foldable panel · USB-A · Rugged case</p>
+            </div>
+            <div class="hw-right"><span class="badge warn">⏳ Pending</span></div>
+          </div>
+          <div class="form-group" style="margin-left:44px">
+            <label class="form-label">Unit Serial Number</label>
+            <input class="form-input" placeholder="Scan barcode or enter manually">
+          </div>
+        </div>
+        <div>
+          <div class="card success">
+            <div class="sec-label" style="margin-top:0">Issuance Checklist</div>
+            <div class="check-item"><div class="chk checked">✓</div><div>SIM installed and activated in handset</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Phone charged to at least 50% before handover</div></div>
+            <div class="check-item"><div class="chk checked">✓</div><div>Patient's Fayda ID registered as device owner in system</div></div>
+            <div class="check-item"><div class="chk">·</div><div>Solar charger unit scanned and logged</div></div>
+            <div class="check-item"><div class="chk">·</div><div>Patient confirms receipt by signature or thumbprint</div></div>
+          </div>
+          <div class="card">
+            <div class="sec-label" style="margin-top:0">Patient Receipt Signature</div>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px">Patient confirms she received the above items and understands they remain her personal health tools.</p>
+            <div style="border:2px dashed var(--border);border-radius:12px;background:#FAFAFA;height:90px;display:flex;align-items:center;justify-content:center;gap:8px">
+              <span style="font-size:24px">✍️</span>
+              <span style="font-size:12px;color:var(--text-muted)">Thumbprint or signature</span>
+            </div>
+          </div>
+          <div class="card amber">
+            <strong style="font-size:12px">📱 Next Step</strong>
+            <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">Hand the patient her new phone and guide her through the onboarding flow. You can assist from your tablet using the HEW Companion screen.</p>
+          </div>
+          <button class="btn amber">Confirm Issuance &amp; Begin Onboarding →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S08: WELCOME (PHONE) ══════════ -->
+  <div id="s08">
+    <div class="status-bar">
+      <span>9:41</span>
+      <span class="status-icons">📶 🔋</span>
+    </div>
+    <div style="background:var(--teal);padding:12px 16px;text-align:center;flex-shrink:0">
+      <div style="font-family:'DM Serif Display',serif;font-size:16px;color:white">HealthBridge</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.7px">Your health · your voice</div>
+    </div>
+    <div class="welcome-screen" style="background:white;flex:1;overflow:hidden">
+      <div class="w-icon">🌱</div>
+      <h1>Welcome,<br>Almaz</h1>
+      <p class="tagline">This is your phone.<br>Your health worker is here to help you.</p>
+      <div class="hew-note">👩‍⚕️ Your health worker is nearby if you need help</div>
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%">
+        <button class="btn primary" style="font-size:17px;padding:16px">
+          🌸 &nbsp; Start
+        </button>
+        <button class="btn secondary" style="font-size:14px">
+          🔁 &nbsp; Show me again later
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S09: ONBOARDING — YOUR PHONE (PHONE) ══════════ -->
+  <div id="s09">
+    <div class="status-bar"><span>9:43</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="justify-content:center">
+      <h3 style="font-size:14px">Learning Your Phone</h3>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div class="step-dots">
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="ob-visual">
+        <span class="big-icon">📱</span>
+        <h2>This Is Your Phone</h2>
+        <p>Use your finger to tap and swipe</p>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">👆</div>
+        <div><h4>Tap once to select</h4><p>Touch the screen gently with one finger to choose something</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">⬆️</div>
+        <div><h4>Swipe up to scroll</h4><p>Slide your finger upward to see more on the screen</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🏠</div>
+        <div><h4>Press the home button</h4><p>Press the button at the bottom to go back to the main screen</p></div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S10: ONBOARDING — YOUR HEALTH APP (PHONE) ══════════ -->
+  <div id="s10">
+    <div class="status-bar"><span>9:46</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="justify-content:center"><h3 style="font-size:14px">Learning Your Phone</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="ob-visual">
+        <span class="big-icon">🏥</span>
+        <h2>Your Health App</h2>
+        <p>Track your visits and your baby's health</p>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">📅</div>
+        <div><h4>Your clinic visits</h4><p>See when your next health visit is scheduled</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">👶</div>
+        <div><h4>Your baby's records</h4><p>After your baby is born, their health is recorded here too</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">👩‍⚕️</div>
+        <div><h4>Your health worker can see this</h4><p>Tigist can check your records and help you at any visit</p></div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S11: ONBOARDING — YOUR WALLET (PHONE) ══════════ -->
+  <div id="s11">
+    <div class="status-bar"><span>9:49</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="justify-content:center"><h3 style="font-size:14px">Learning Your Phone</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
+      </div>
+      <div class="ob-visual">
+        <span class="big-icon">💳</span>
+        <h2>Your Wallet</h2>
+        <p>Money will arrive here each month</p>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">💰</div>
+        <div><h4>Monthly payments arrive here</h4><p>The government sends money to support your health visits</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">📲</div>
+        <div><h4>You will receive a message</h4><p>When money arrives, you get an SMS on this phone</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🔐</div>
+        <div><h4>Your money is safe</h4><p>Only you — with your fingerprint — can use your wallet</p></div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S12: ONBOARDING — STAY CONNECTED (PHONE) ══════════ -->
+  <div id="s12">
+    <div class="status-bar"><span>9:53</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="justify-content:center"><h3 style="font-size:14px">Learning Your Phone</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
+      </div>
+      <div class="ob-visual">
+        <span class="big-icon">☀️</span>
+        <h2>Stay Connected</h2>
+        <p>Your solar charger keeps your phone powered</p>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🔆</div>
+        <div><h4>Charge with sunlight</h4><p>Place the solar panel in direct sunlight — it charges your phone through the cable</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">📞</div>
+        <div><h4>Call your health worker</h4><p>Tigist's number is saved in your phone — tap her name to call</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🔁</div>
+        <div><h4>You can watch this again</h4><p>Tap "Learn" on your home screen to replay this tutorial anytime</p></div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn amber" style="font-size:16px">I'm ready — Confirm ✓</button>
+      <button class="btn secondary" style="margin-top:8px;font-size:13px">🔁 Watch again from the beginning</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S13: E-SIGNATURE (PHONE) ══════════ -->
+  <div id="s13">
+    <div class="status-bar"><span>9:57</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr"><h3>Confirm Your Understanding</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div style="text-align:center;padding:8px 0 16px">
+        <span style="font-size:14px;color:var(--text-muted)">Place your finger on the large circle below</span>
+      </div>
+      <div class="fp-area">
+        <span class="fp-icon">👆</span>
+        <div style="font-size:15px;font-weight:800;color:var(--teal);margin-top:10px">Touch here with your finger</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Hold for 2 seconds</div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="info-row"><span class="lbl">Name</span><span class="val">Almaz Bekele</span></div>
+        <div class="info-row"><span class="lbl">Fayda ID</span><span class="val" style="font-size:12px;color:var(--teal)">ETH–ORM–2026–847391</span></div>
+        <div class="info-row"><span class="lbl">Date</span><span class="val">11 March 2026</span></div>
+        <div class="info-row"><span class="lbl">Signing for</span><span class="val" style="font-size:11px">Receipt of phone, SIM &amp; training</span></div>
+      </div>
+      <div style="background:var(--teal-light);border-radius:10px;padding:12px;font-size:12px;color:var(--teal);line-height:1.6;margin-top:4px">
+        By placing my fingerprint, I confirm that I received my phone, SIM card, and solar charger, and I completed onboarding training.
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:16px">✅ Sign &amp; Complete</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S14: HOME DASHBOARD (PHONE) ══════════ -->
+  <div id="s14">
+    <div class="status-bar"><span>10:04</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr">
+      <div>
+        <div class="logo-text">HealthBridge</div>
+        <div style="font-size:10px;opacity:0.7">Welcome, Almaz 👋</div>
+      </div>
+      <div class="hdr-right">🔔</div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
+      <div class="wallet-card">
+        <div class="wc-label">Your Wallet Balance</div>
+        <div class="wc-row">
+          <div>
+            <div class="wc-amount">ETB 450</div>
+            <div class="wc-sub">Next payment: April 11</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px">💳</div>
+            <div class="wc-id">ETH–ORM–2026–847391</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-label">Your Services</div>
+      <div class="icon-tiles">
+        <div class="icon-tile">
+          <span class="ti">🏥</span>
+          <div class="tl">My Health</div>
+          <div class="ts">Next visit: Apr 3</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">💰</span>
+          <div class="tl">My Wallet</div>
+          <div class="ts">ETB 450 available</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">💬</span>
+          <div class="tl">Messages</div>
+          <div class="ts">2 new</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">📖</span>
+          <div class="tl">Learn Again</div>
+          <div class="ts">Replay tutorial</div>
+        </div>
+      </div>
+
+      <div class="sec-label">Your Next Clinic Visit</div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:32px">📅</span>
+          <div>
+            <div style="font-weight:800;font-size:14px">Antenatal Check-up</div>
+            <div style="font-size:12px;color:var(--text-muted)">Saturday, 3 April 2026 · 9:00 AM</div>
+            <div style="font-size:12px;color:var(--text-muted)">Adama Health Centre — Unit 4</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-label">Health Worker</div>
+      <div class="linked-row">
+        <div class="avatar">👩‍⚕️</div>
+        <div><h4>Tigist Haile</h4><p>Health Extension Worker · Adama W4</p></div>
+        <div class="lr-right"><button class="btn primary sm">📞 Call</button></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item active"><div class="bn-icon">🏠</div>Home</div>
+      <div class="bn-item"><div class="bn-icon">🏥</div>Health</div>
+      <div class="bn-item"><div class="bn-icon">💳</div>Wallet</div>
+      <div class="bn-item"><div class="bn-icon">💬</div>Messages</div>
+    </div>
+  </div>
+
+  <!-- ══════════ S15: BIRTH CONSENT (PHONE) ══════════ -->
+  <div id="s15">
+    <div class="status-bar"><span>07:34</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr"><h3>Your Baby's Registration</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:white">
+      <div style="text-align:center;padding:14px 0">
+        <span style="font-size:72px;line-height:1">👶</span>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--teal);margin-top:10px">Your Baby Has Arrived</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:5px;line-height:1.6">Register your baby to give them an official identity and access to health support</div>
+      </div>
+      <div class="alert info" style="font-size:12px">👩‍⚕️ Your health worker Tigist is recording this with you today.</div>
+      <div class="sec-label">By signing, you agree that</div>
+      <div class="check-item"><div class="chk checked">✓</div><div>My baby will be officially registered in Ethiopia's civil records</div></div>
+      <div class="check-item"><div class="chk checked">✓</div><div>My baby will receive a national Fayda identity number</div></div>
+      <div class="check-item"><div class="chk checked">✓</div><div>A digital birth certificate will be created</div></div>
+      <div class="check-item"><div class="chk checked">✓</div><div>My baby will receive health and financial support</div></div>
+      <div class="check-item"><div class="chk checked">✓</div><div>My baby's account will be linked to my wallet</div></div>
+      <div class="fp-area" style="margin-top:14px">
+        <span class="fp-icon">👆</span>
+        <div style="font-size:14px;font-weight:800;color:var(--teal);margin-top:8px">Sign with your fingerprint</div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn amber" style="font-size:15px">✅ Register My Baby</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S16: RECORD BIRTH (TABLET — HEW) ══════════ -->
+  <div id="s16">
+    <div class="status-bar">
+      <span>HEW Portal · Delivery Facility</span>
+      <span class="status-icons">👤 Tigist H. &nbsp; 07:41 &nbsp; 🔋</span>
+    </div>
+    <div class="app-hdr">
+      <span class="back">←</span>
+      <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Log Birth &amp; Delivery Outcomes</div></div>
+    </div>
+    <div class="step-bar" style="background:#9A3E0A">
+      <span style="color:white">🔴 LIVE — Birth Registration in Progress</span>
+      <span class="step-count" style="color:rgba(255,255,255,0.7)">Almaz Bekele · ETH–ORM–2026–847391</span>
+    </div>
+    <div class="tablet-body">
+      <div class="form-row">
+        <div>
+          <div class="serif-title">Birth &amp; Delivery Log</div>
+          <div class="page-sub">Record accurate details — this populates the national CRVS and generates the birth certificate.</div>
+          <div class="sec-label">Mother</div>
+          <div class="card" style="background:var(--teal-light);border-color:var(--teal-border)">
+            <div class="info-row"><span class="lbl">Name</span><span class="val">Almaz Bekele</span></div>
+            <div class="info-row"><span class="lbl">Fayda ID</span><span class="val" style="color:var(--teal)">ETH–ORM–2026–847391</span></div>
+            <div class="info-row"><span class="lbl">Facility</span><span class="val">Adama General Hospital</span></div>
+          </div>
+          <div class="sec-label">Infant Details</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Baby's Given Name</label>
+              <input class="form-input" placeholder="Name given by mother">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sex</label>
+              <select class="form-select"><option>Select...</option><option>Female</option><option>Male</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Date of Birth</label>
+              <input class="form-input filled" value="11 March 2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Time of Birth</label>
+              <input class="form-input" placeholder="HH:MM">
+            </div>
+          </div>
+          <div class="form-row three">
+            <div class="form-group">
+              <label class="form-label">Birth Weight (kg)</label>
+              <input class="form-input" placeholder="0.0 kg">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Birth Length (cm)</label>
+              <input class="form-input" placeholder="cm">
+            </div>
+            <div class="form-group">
+              <label class="form-label">APGAR Score</label>
+              <input class="form-input" placeholder="1–10">
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Delivery Information</div>
+          <div class="form-group">
+            <label class="form-label">Delivery Type</label>
+            <select class="form-select">
+              <option selected>Spontaneous vaginal delivery</option>
+              <option>Assisted vaginal delivery</option>
+              <option>Caesarean section</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Delivery Attendant</label>
+            <select class="form-select">
+              <option selected>Skilled birth attendant — midwife</option>
+              <option>HEW supervised</option>
+              <option>Doctor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Complications (if any)</label>
+            <select class="form-select"><option selected>None</option></select>
+          </div>
+          <div class="sec-label">Post-Delivery Status</div>
+          <div class="check-item"><div class="chk checked">✓</div><div>Mother stable — vital signs normal</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div>Infant breathing, feeding initiated</div></div>
+          <div class="check-item"><div class="chk checked">✓</div><div>Vitamin K and eye drops administered</div></div>
+          <div class="check-item"><div class="chk">·</div><div>BCG and Hep B vaccination given</div></div>
+          <div class="alert info" style="margin-top:14px">Submitting this form will trigger automatic infant Fayda enrollment, birth certificate generation, and infant subsidy activation.</div>
+          <button class="btn amber" style="margin-top:6px">Submit Birth Record &amp; Register Infant →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S17: BIRTH REGISTERED! (PHONE) ══════════ -->
+  <div id="s17">
+    <div class="status-bar"><span>08:02</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="background:var(--success)"><h3>Your Baby is Registered!</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:20px 16px;background:white">
+      <div class="success-screen">
+        <div class="success-circle">🎉</div>
+        <h2 style="font-size:26px">It's Official!</h2>
+        <p>Your baby has been registered and now has an official identity in Ethiopia.</p>
+      </div>
+      <div class="card success">
+        <div class="info-row"><span class="lbl">Baby's Name</span><span class="val">Liya Almaz Bekele</span></div>
+        <div class="info-row"><span class="lbl">Date of Birth</span><span class="val">11 March 2026</span></div>
+        <div class="info-row"><span class="lbl">Place of Birth</span><span class="val">Adama General Hospital</span></div>
+        <div class="info-row"><span class="lbl">Mother</span><span class="val">Almaz Bekele</span></div>
+      </div>
+      <div class="sec-label">What Happens Next</div>
+      <div class="ob-step">
+        <div class="step-icon">🆔</div>
+        <div><h4>Baby's Fayda ID is being created</h4><p>This will appear in your app shortly</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">📄</div>
+        <div><h4>Birth certificate is ready</h4><p>Tap to view and save your baby's certificate</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">💰</div>
+        <div><h4>Baby's support is activating</h4><p>Funds will arrive in your wallet soon</p></div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:15px">📄 View Birth Certificate →</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S18: BIRTH CERTIFICATE (PHONE) ══════════ -->
+  <div id="s18">
+    <div class="status-bar"><span>08:04</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr"><span class="back">←</span><h3>Birth Certificate</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
+      <div class="certificate">
+        <span class="cert-flag">🇪🇹</span>
+        <h3>Federal Democratic Republic of Ethiopia<br>Official Digital Birth Certificate</h3>
+        <div class="cert-row"><span class="cl">Full Name</span><span class="cv">Liya Almaz Bekele</span></div>
+        <div class="cert-row"><span class="cl">Date of Birth</span><span class="cv">11 March 2026</span></div>
+        <div class="cert-row"><span class="cl">Place of Birth</span><span class="cv">Adama General Hospital, Oromia</span></div>
+        <div class="cert-row"><span class="cl">Sex</span><span class="cv">Female</span></div>
+        <div class="cert-row"><span class="cl">Birth Weight</span><span class="cv">3.1 kg</span></div>
+        <div class="cert-row"><span class="cl">Mother</span><span class="cv">Almaz Bekele</span></div>
+        <div class="cert-row"><span class="cl">Mother's Fayda ID</span><span class="cv">ETH–ORM–2026–847391</span></div>
+        <div class="cert-row"><span class="cl">Infant Fayda ID</span><span class="cv">ETH–ORM–2026–851204</span></div>
+        <div class="cert-row"><span class="cl">Registration Date</span><span class="cv">11 March 2026</span></div>
+        <div class="cert-row"><span class="cl">Certificate No.</span><span class="cv">CRVS–2026–ORM–00892</span></div>
+        <div class="cert-seal">Digitally certified by the Ethiopian Civil Registration &amp; Vital Statistics System (CRVS). Issued via HealthBridge · Fayda identity anchor: ETH–ORM–2026–851204</div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button class="btn secondary" style="font-size:13px">📲 Share</button>
+        <button class="btn primary" style="font-size:13px">💾 Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ S19: INFANT ENROLLED (PHONE) ══════════ -->
+  <div id="s19">
+    <div class="status-bar"><span>08:09</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr" style="background:var(--teal-mid)"><h3>Baby Enrolled &amp; Support Active</h3></div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
+
+      <div class="fayda-id-box" style="margin-bottom:14px">
+        <div class="fid-label">Baby's Fayda ID</div>
+        <div class="fid-num">ETH–ORM–2026–851204</div>
+        <div class="fid-name">Liya Almaz Bekele · linked to mother</div>
+      </div>
+
+      <div class="sec-label">Support Activated</div>
+      <div class="ob-step">
+        <div class="step-icon">💰</div>
+        <div><h4>Infant health subsidy — active</h4><p>Monthly payments will arrive in your shared wallet</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🏥</div>
+        <div><h4>Post-natal visits scheduled</h4><p>Baby's first check-up: 18 March 2026 at Adama HC</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">💳</div>
+        <div><h4>Wallets linked via EthSwitch</h4><p>Baby's G2P payments flow directly to your account</p></div>
+      </div>
+
+      <div class="sec-label">Your Family Wallet</div>
+      <div class="wallet-card">
+        <div class="wc-label">Combined Family Balance</div>
+        <div class="wc-row">
+          <div>
+            <div class="wc-amount">ETB 900</div>
+            <div class="wc-sub">Almaz + Liya · Next payment: Apr 11</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px">👩‍👧</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
+      <button class="btn primary" style="font-size:15px">Go to Home →</button>
+    </div>
+  </div>
+
+  <!-- ══════════ S20: FAMILY DASHBOARD (PHONE) ══════════ -->
+  <div id="s20">
+    <div class="status-bar"><span>08:14</span><span class="status-icons">📶 🔋</span></div>
+    <div class="app-hdr">
+      <div>
+        <div class="logo-text">HealthBridge</div>
+        <div style="font-size:10px;opacity:0.7">Welcome back, Almaz 👋</div>
+      </div>
+      <div class="hdr-right">🔔</div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
+      <div class="wallet-card">
+        <div class="wc-label">Family Wallet Balance</div>
+        <div class="wc-row">
+          <div>
+            <div class="wc-amount">ETB 900</div>
+            <div class="wc-sub">Next payment: April 11 · Almaz + Liya</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px">👩‍👧</div>
+            <div class="wc-id">2 enrolled</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-label">Your Family</div>
+      <div class="linked-row">
+        <div class="avatar">🤱</div>
+        <div><h4>Almaz Bekele</h4><p>ETH–ORM–2026–847391 · Mother</p></div>
+        <div class="lr-right"><span class="badge success">✓ Active</span></div>
+      </div>
+      <div class="linked-row">
+        <div class="avatar">👶</div>
+        <div><h4>Liya Almaz Bekele</h4><p>ETH–ORM–2026–851204 · Infant</p></div>
+        <div class="lr-right"><span class="badge success">✓ Active</span></div>
+      </div>
+
+      <div class="sec-label">Your Services</div>
+      <div class="icon-tiles">
+        <div class="icon-tile">
+          <span class="ti">🏥</span>
+          <div class="tl">My Health</div>
+          <div class="ts">Visit: Mar 18</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">👶</span>
+          <div class="tl">Baby's Health</div>
+          <div class="ts">First check-up due</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">💰</span>
+          <div class="tl">My Wallet</div>
+          <div class="ts">ETB 900</div>
+        </div>
+        <div class="icon-tile">
+          <span class="ti">📄</span>
+          <div class="tl">Documents</div>
+          <div class="ts">Birth certificate</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="bn-item active"><div class="bn-icon">🏠</div>Home</div>
+      <div class="bn-item"><div class="bn-icon">🏥</div>Health</div>
+      <div class="bn-item"><div class="bn-icon">💳</div>Wallet</div>
+      <div class="bn-item"><div class="bn-icon">💬</div>Messages</div>
+    </div>
+  </div>
+
+</div><!-- end #templates -->
+
+<script>
+  const SCREENS = [
+    { id:'s01', device:'tablet', title:'Initial Assessment',       phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s02', device:'tablet', title:'Informed Consent',          phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s03', device:'tablet', title:'Patient Details',           phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s04', device:'tablet', title:'Fayda Identity Check',      phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s05', device:'tablet', title:'Biometric Enrollment',      phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s06', device:'tablet', title:'Fayda ID Created',          phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s07', device:'tablet', title:'Hardware Issuance',         phase:'Phase 1 — HEW Enrollment',       phaseNum:1 },
+    { id:'s08', device:'phone',  title:'Welcome Screen',            phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s09', device:'phone',  title:'Onboarding: Your Phone',    phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s10', device:'phone',  title:'Onboarding: Your Health App', phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s11', device:'phone',  title:'Onboarding: Your Wallet',   phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s12', device:'phone',  title:'Onboarding: Stay Connected',phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s13', device:'phone',  title:'e-Signature',               phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s14', device:'phone',  title:'Home Dashboard',            phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s15', device:'phone',  title:'Birth Consent',             phase:'Phase 3 — Birth Registration',   phaseNum:3 },
+    { id:'s16', device:'tablet', title:'Record Birth (HEW)',        phase:'Phase 3 — Birth Registration',   phaseNum:3 },
+    { id:'s17', device:'phone',  title:'Birth Registered!',         phase:'Phase 3 — Birth Registration',   phaseNum:3 },
+    { id:'s18', device:'phone',  title:'Birth Certificate',         phase:'Phase 3 — Birth Registration',   phaseNum:3 },
+    { id:'s19', device:'phone',  title:'Infant Enrolled & Support Active', phase:'Phase 3 — Birth Registration', phaseNum:3 },
+    { id:'s20', device:'phone',  title:'Family Dashboard',          phase:'Phase 3 — Birth Registration',   phaseNum:3 },
+  ];
+
+  let currentIndex = 0;
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= SCREENS.length) return;
+    currentIndex = idx;
+    const s = SCREENS[idx];
+
+    // Get screen HTML from template
+    const tpl = document.getElementById(s.id);
+    if (!tpl) return;
+    const html = tpl.innerHTML;
+
+    // Switch device frame
+    const pf = document.getElementById('phone-frame');
+    const tf = document.getElementById('tablet-frame');
+    const ps = document.getElementById('phone-screen');
+    const ts = document.getElementById('tablet-screen');
+
+    if (s.device === 'phone') {
+      pf.style.display = 'block';
+      tf.style.display = 'none';
+      ps.innerHTML = html;
+      // Activate scr divs
+      ps.querySelectorAll('.scr').forEach(el => el.classList.remove('active'));
+    } else {
+      pf.style.display = 'none';
+      tf.style.display = 'block';
+      ts.innerHTML = html;
+      ts.querySelectorAll('.scr').forEach(el => el.classList.remove('active'));
+    }
+
+    // Update top bar
+    document.getElementById('top-title').textContent = s.title;
+    document.getElementById('top-phase').textContent = s.phase;
+    document.getElementById('top-device').textContent = s.device === 'phone' ? '📱 Phone' : '⬜ Tablet';
+    document.getElementById('counter').textContent = (idx + 1) + ' / ' + SCREENS.length;
+
+    // Update nav buttons
+    document.getElementById('btn-prev').disabled = (idx === 0);
+    document.getElementById('btn-next').disabled = (idx === SCREENS.length - 1);
+
+    // Update sidebar
+    document.querySelectorAll('.s-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === idx);
+    });
+
+    // Scroll sidebar active into view
+    const activeBtn = document.querySelector('.s-btn.active');
+    if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest' });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(currentIndex + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(currentIndex - 1);
+  });
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => goTo(0));
+</script>
+</body>
+</html>
