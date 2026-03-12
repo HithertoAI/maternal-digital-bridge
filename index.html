@@ -677,7 +677,7 @@
           </div>
         </div>
       </div>
-      <button class="btn primary" style="margin-top:8px">Continue to Consent →</button>
+      <button class="btn primary" style="margin-top:8px" onclick="goTo(1)">Continue to Consent →</button>
     </div>
   </div>
 
@@ -688,7 +688,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 09:44 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(0)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Informed Consent</div></div>
     </div>
     <div class="step-bar">
@@ -745,7 +745,7 @@
               <option>Tigrinya</option>
             </select>
           </div>
-          <button class="btn primary">Consent Recorded — Continue →</button>
+          <button class="btn primary" onclick="goTo(2)">Consent Recorded — Continue →</button>
         </div>
       </div>
     </div>
@@ -758,7 +758,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 09:51 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(1)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Patient Details</div></div>
     </div>
     <div class="step-bar">
@@ -851,7 +851,7 @@
             <label class="form-label">Elder Name &amp; Role (if applicable)</label>
             <input class="form-input" placeholder="Name — Role — Kebele">
           </div>
-          <button class="btn primary" style="margin-top:4px">Save &amp; Check Identity →</button>
+          <button class="btn primary" style="margin-top:4px" onclick="goTo(3)">Save &amp; Check Identity →</button>
         </div>
       </div>
     </div>
@@ -864,7 +864,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 09:58 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(2)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Fayda Identity Check</div></div>
     </div>
     <div class="step-bar">
@@ -914,8 +914,8 @@
             <strong style="font-size:12px">⚠ If a duplicate is suspected</strong>
             <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">Do not proceed. Flag the case and contact the regional Fayda office for manual deduplication review.</p>
           </div>
-          <button class="btn primary">Begin Biometric Enrollment →</button>
-          <button class="btn secondary" style="margin-top:8px">Re-query with Different Details</button>
+          <button class="btn primary" onclick="goTo(4)">Begin Biometric Enrollment →</button>
+          <button class="btn secondary" style="margin-top:8px" onclick="goTo(3)">Re-query with Different Details</button>
         </div>
       </div>
     </div>
@@ -928,7 +928,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 10:05 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(3)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Biometric Enrollment</div></div>
     </div>
     <div class="step-bar">
@@ -987,7 +987,7 @@
             <strong style="font-size:12px">⚠ Capture Tips</strong>
             <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">If a finger is injured or missing, tap and hold that finger's button to mark it as unavailable. A minimum of 6 quality prints is required.</p>
           </div>
-          <button class="btn primary" style="opacity:0.5;pointer-events:none">Submit Biometrics (complete capture first)</button>
+          <button class="btn primary" onclick="goTo(5)">Submit Biometrics →</button>
         </div>
       </div>
     </div>
@@ -1046,7 +1046,7 @@
             <div class="info-row"><span class="lbl">First Payment</span><span class="val">Within 48 hours</span></div>
             <div class="info-row"><span class="lbl">Wallet</span><span class="val">Pending device issuance</span></div>
           </div>
-          <button class="btn primary">Proceed to Hardware Issuance →</button>
+          <button class="btn primary" onclick="goTo(6)">Proceed to Hardware Issuance →</button>
           <button class="btn secondary" style="margin-top:8px">Print Record</button>
         </div>
       </div>
@@ -1060,7 +1060,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 10:24 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(5)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Hardware Issuance</div></div>
     </div>
     <div class="step-bar">
@@ -1133,7 +1133,7 @@
             <strong style="font-size:12px">📱 Next Step</strong>
             <p style="font-size:12px;margin-top:4px;color:var(--text-muted)">Hand the patient her new phone and guide her through the onboarding flow. You can assist from your tablet using the HEW Companion screen.</p>
           </div>
-          <button class="btn amber">Confirm Issuance &amp; Begin Onboarding →</button>
+          <button class="btn amber" onclick="goTo(7)">Confirm Issuance &amp; Begin Onboarding →</button>
         </div>
       </div>
     </div>
@@ -1155,10 +1155,10 @@
       <p class="tagline">This is your phone.<br>Your health worker is here to help you.</p>
       <div class="hew-note">👩‍⚕️ Your health worker is nearby if you need help</div>
       <div style="display:flex;flex-direction:column;gap:10px;width:100%">
-        <button class="btn primary" style="font-size:17px;padding:16px">
+        <button class="btn primary" style="font-size:17px;padding:16px" onclick="goTo(8)">
           🌸 &nbsp; Start
         </button>
-        <button class="btn secondary" style="font-size:14px">
+        <button class="btn secondary" style="font-size:14px" onclick="goTo(8)">
           🔁 &nbsp; Show me again later
         </button>
       </div>
@@ -1194,7 +1194,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+      <button class="btn primary" style="font-size:16px" onclick="goTo(9)">I understand → Next</button>
     </div>
   </div>
 
@@ -1225,7 +1225,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+      <button class="btn primary" style="font-size:16px" onclick="goTo(10)">I understand → Next</button>
     </div>
   </div>
 
@@ -1273,7 +1273,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:16px">I understand → Next</button>
+      <button class="btn primary" style="font-size:16px" onclick="goTo(11)">I understand → Next</button>
     </div>
   </div>
 
@@ -1304,8 +1304,8 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn amber" style="font-size:16px">I'm ready — Confirm ✓</button>
-      <button class="btn secondary" style="margin-top:8px;font-size:13px">🔁 Watch again from the beginning</button>
+      <button class="btn amber" style="font-size:16px" onclick="goTo(12)">I'm ready — Confirm ✓</button>
+      <button class="btn secondary" style="margin-top:8px;font-size:13px" onclick="goTo(8)">🔁 Watch again from the beginning</button>
     </div>
   </div>
 
@@ -1333,7 +1333,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:16px">✅ Sign &amp; Complete</button>
+      <button class="btn primary" style="font-size:16px" onclick="goTo(13)">✅ Sign &amp; Complete</button>
     </div>
   </div>
 
@@ -1366,26 +1366,31 @@
 
       <div class="sec-label">Your Services</div>
       <div class="icon-tiles">
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(13)">
           <span class="ti">🏥</span>
           <div class="tl">My Health</div>
           <div class="ts">Next visit: Apr 3</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(13)">
           <span class="ti">📂</span>
           <div class="tl">My Documents</div>
           <div class="ts">Fayda ID · Records</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(13)">
           <span class="ti">💬</span>
           <div class="tl">Messages</div>
           <div class="ts">2 new</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(8)">
           <span class="ti">📖</span>
           <div class="tl">Learn Again</div>
           <div class="ts">Replay tutorial</div>
         </div>
+      </div>
+
+      <div style="background:var(--amber-light);border:1.5px solid #F5C87A;border-radius:12px;padding:12px 14px;margin-bottom:6px;cursor:pointer" onclick="goTo(14)">
+        <div style="font-size:11px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">⏭ Demo: Skip to Birth Registration</div>
+        <div style="font-size:12px;color:var(--text-muted)">Tap here to fast-forward to Phase 3 for the presentation</div>
       </div>
 
       <div class="sec-label">Your Next Clinic Visit</div>
@@ -1438,7 +1443,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn amber" style="font-size:15px">✅ Register My Baby</button>
+      <button class="btn amber" style="font-size:15px" onclick="goTo(15)">✅ Register My Baby</button>
     </div>
   </div>
 
@@ -1449,7 +1454,7 @@
       <span class="status-icons">👤 Tigist H. &nbsp; 07:41 &nbsp; 🔋</span>
     </div>
     <div class="app-hdr">
-      <span class="back">←</span>
+      <span class="back" onclick="goTo(14)" style="cursor:pointer">←</span>
       <div><div class="logo-text">HealthBridge HEW Portal</div><div style="font-size:10px;opacity:0.7">Log Birth &amp; Delivery Outcomes</div></div>
     </div>
     <div class="step-bar" style="background:#9A3E0A">
@@ -1531,7 +1536,7 @@
           <div class="check-item"><div class="chk checked">✓</div><div>Vitamin K and eye drops administered</div></div>
           <div class="check-item"><div class="chk">·</div><div>BCG and Hep B vaccination given</div></div>
           <div class="alert info" style="margin-top:14px">Submitting this form will trigger automatic infant Fayda enrollment, birth certificate generation, and infant subsidy activation.</div>
-          <button class="btn amber" style="margin-top:6px">Submit Birth Record &amp; Register Infant →</button>
+          <button class="btn amber" style="margin-top:6px" onclick="goTo(16)">Submit Birth Record &amp; Register Infant →</button>
         </div>
       </div>
     </div>
@@ -1568,14 +1573,14 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:15px">📄 View Birth Certificate →</button>
+      <button class="btn primary" style="font-size:15px" onclick="goTo(17)">📄 View Birth Certificate →</button>
     </div>
   </div>
 
   <!-- ══════════ S18: BIRTH CERTIFICATE (PHONE) ══════════ -->
   <div id="s18">
     <div class="status-bar"><span>08:04</span><span class="status-icons">📶 🔋</span></div>
-    <div class="app-hdr"><span class="back">←</span><h3>Birth Certificate</h3></div>
+    <div class="app-hdr"><span class="back" onclick="goTo(16)" style="cursor:pointer">←</span><h3>Birth Certificate</h3></div>
     <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
       <div class="certificate">
         <span class="cert-flag">🇪🇹</span>
@@ -1596,6 +1601,7 @@
         <button class="btn secondary" style="font-size:13px">📲 Share</button>
         <button class="btn primary" style="font-size:13px">💾 Save</button>
       </div>
+      <button class="btn primary" style="margin-top:10px;font-size:15px" onclick="goTo(18)">Continue → Baby's Enrollment</button>
     </div>
   </div>
 
@@ -1642,7 +1648,7 @@
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
-      <button class="btn primary" style="font-size:15px">Go to Home →</button>
+      <button class="btn primary" style="font-size:15px" onclick="goTo(19)">Go to Home →</button>
     </div>
   </div>
 
@@ -1686,22 +1692,22 @@
 
       <div class="sec-label">Your Services</div>
       <div class="icon-tiles">
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(19)">
           <span class="ti">🏥</span>
           <div class="tl">My Health</div>
           <div class="ts">Visit: Mar 18</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(19)">
           <span class="ti">👶</span>
           <div class="tl">Baby's Health</div>
           <div class="ts">First check-up due</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(19)">
           <span class="ti">💚</span>
           <div class="tl">EthioPay</div>
           <div class="ts">ETB 900</div>
         </div>
-        <div class="icon-tile">
+        <div class="icon-tile" onclick="goTo(17)">
           <span class="ti">📄</span>
           <div class="tl">Documents</div>
           <div class="ts">Birth certificate</div>
