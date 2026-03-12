@@ -542,7 +542,7 @@
     <button class="s-btn" onclick="goTo(7)"><span class="num">8</span>Welcome Screen</button>
     <button class="s-btn" onclick="goTo(8)"><span class="num">9</span>Your Phone</button>
     <button class="s-btn" onclick="goTo(9)"><span class="num">10</span>Your Health App</button>
-    <button class="s-btn" onclick="goTo(10)"><span class="num">11</span>Your Wallet</button>
+    <button class="s-btn" onclick="goTo(10)"><span class="num">11</span>Documents &amp; EthioPay</button>
     <button class="s-btn" onclick="goTo(11)"><span class="num">12</span>Stay Connected</button>
     <button class="s-btn" onclick="goTo(12)"><span class="num">13</span>e-Signature</button>
     <button class="s-btn" onclick="goTo(13)"><span class="num">14</span>Home Dashboard</button>
@@ -1229,7 +1229,7 @@
     </div>
   </div>
 
-  <!-- ══════════ S11: ONBOARDING — YOUR WALLET (PHONE) ══════════ -->
+  <!-- ══════════ S11: ONBOARDING — YOUR DOCUMENTS & PAYMENTS (PHONE) ══════════ -->
   <div id="s11">
     <div class="status-bar"><span>9:49</span><span class="status-icons">📶 🔋</span></div>
     <div class="app-hdr" style="justify-content:center"><h3 style="font-size:14px">Learning Your Phone</h3></div>
@@ -1237,22 +1237,39 @@
       <div class="step-dots">
         <div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
       </div>
-      <div class="ob-visual">
-        <span class="big-icon">💳</span>
-        <h2>Your Wallet</h2>
-        <p>Money will arrive here each month</p>
+
+      <!-- Documents wallet section -->
+      <div class="ob-visual" style="margin-bottom:10px">
+        <span class="big-icon">📂</span>
+        <h2>Your Documents</h2>
+        <p>Your ID, certificates, and health records — always with you</p>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">🆔</div>
+        <div><h4>Your Fayda ID lives here</h4><p>Your national identity is stored safely in this app</p></div>
+      </div>
+      <div class="ob-step">
+        <div class="step-icon">📄</div>
+        <div><h4>Your baby's birth certificate</h4><p>After your baby is born, their certificate will appear here</p></div>
+      </div>
+
+      <hr style="border:none;border-top:1.5px dashed var(--border);margin:14px 0">
+
+      <!-- EthioPay section -->
+      <div style="background:linear-gradient(135deg,#1A6B32 0%,#2E8B46 100%);border-radius:14px;padding:16px 16px 12px;text-align:center;margin-bottom:12px">
+        <div style="display:inline-block;background:white;border-radius:8px;padding:4px 10px;margin-bottom:8px">
+          <span style="font-size:12px;font-weight:900;color:#1A6B32;letter-spacing:0.5px">EP EthioPay</span>
+        </div>
+        <div style="font-family:'DM Serif Display',serif;font-size:18px;color:white;margin-bottom:4px">Your Payments</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.75)">Government health support sent directly to you</div>
       </div>
       <div class="ob-step">
         <div class="step-icon">💰</div>
-        <div><h4>Monthly payments arrive here</h4><p>The government sends money to support your health visits</p></div>
+        <div><h4>Monthly support arrives here</h4><p>The government sends money through EthioPay for your health visits</p></div>
       </div>
       <div class="ob-step">
         <div class="step-icon">📲</div>
-        <div><h4>You will receive a message</h4><p>When money arrives, you get an SMS on this phone</p></div>
-      </div>
-      <div class="ob-step">
-        <div class="step-icon">🔐</div>
-        <div><h4>Your money is safe</h4><p>Only you — with your fingerprint — can use your wallet</p></div>
+        <div><h4>You will get an SMS</h4><p>A message on this phone will tell you when money has arrived</p></div>
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
@@ -1331,17 +1348,19 @@
       <div class="hdr-right">🔔</div>
     </div>
     <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
-      <div class="wallet-card">
-        <div class="wc-label">Your Wallet Balance</div>
-        <div class="wc-row">
-          <div>
-            <div class="wc-amount">ETB 450</div>
-            <div class="wc-sub">Next payment: April 11</div>
+      <!-- EthioPay card -->
+      <div style="background:linear-gradient(135deg,#1A6B32 0%,#2E8B46 100%);border-radius:16px;padding:18px 20px;color:white;margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="background:white;border-radius:7px;padding:3px 9px">
+            <span style="font-size:11px;font-weight:900;color:#1A6B32;letter-spacing:0.4px">EP EthioPay</span>
           </div>
-          <div style="text-align:right">
-            <div style="font-size:22px">💳</div>
-            <div class="wc-id">ETH–ORM–2026–847391</div>
-          </div>
+          <span style="font-size:10px;opacity:0.7">IPS · EthSwitch</span>
+        </div>
+        <div style="font-size:11px;opacity:0.75;margin-bottom:3px">Latest Disbursement</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1">ETB 450</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px">
+          <div style="font-size:12px;opacity:0.7">Next payment: April 11</div>
+          <div style="font-size:11px;opacity:0.6;font-weight:700;letter-spacing:0.5px">ETH–ORM–2026–847391</div>
         </div>
       </div>
 
@@ -1353,9 +1372,9 @@
           <div class="ts">Next visit: Apr 3</div>
         </div>
         <div class="icon-tile">
-          <span class="ti">💰</span>
-          <div class="tl">My Wallet</div>
-          <div class="ts">ETB 450 available</div>
+          <span class="ti">📂</span>
+          <div class="tl">My Documents</div>
+          <div class="ts">Fayda ID · Records</div>
         </div>
         <div class="icon-tile">
           <span class="ti">💬</span>
@@ -1391,7 +1410,7 @@
     <div class="bottom-nav">
       <div class="bn-item active"><div class="bn-icon">🏠</div>Home</div>
       <div class="bn-item"><div class="bn-icon">🏥</div>Health</div>
-      <div class="bn-item"><div class="bn-icon">💳</div>Wallet</div>
+      <div class="bn-item"><div class="bn-icon">📂</div>Docs</div>
       <div class="bn-item"><div class="bn-icon">💬</div>Messages</div>
     </div>
   </div>
@@ -1412,7 +1431,7 @@
       <div class="check-item"><div class="chk checked">✓</div><div>My baby will receive a national Fayda identity number</div></div>
       <div class="check-item"><div class="chk checked">✓</div><div>A digital birth certificate will be created</div></div>
       <div class="check-item"><div class="chk checked">✓</div><div>My baby will receive health and financial support</div></div>
-      <div class="check-item"><div class="chk checked">✓</div><div>My baby's account will be linked to my wallet</div></div>
+      <div class="check-item"><div class="chk checked">✓</div><div>My baby's EthioPay account will be linked to mine for G2P payments</div></div>
       <div class="fp-area" style="margin-top:14px">
         <span class="fp-icon">👆</span>
         <div style="font-size:14px;font-weight:800;color:var(--teal);margin-top:8px">Sign with your fingerprint</div>
@@ -1545,7 +1564,7 @@
       </div>
       <div class="ob-step">
         <div class="step-icon">💰</div>
-        <div><h4>Baby's support is activating</h4><p>Funds will arrive in your wallet soon</p></div>
+        <div><h4>Baby's support is activating</h4><p>Funds will arrive via EthioPay soon</p></div>
       </div>
     </div>
     <div style="padding:14px 16px;background:white;border-top:1px solid var(--border)">
@@ -1595,7 +1614,7 @@
       <div class="sec-label">Support Activated</div>
       <div class="ob-step">
         <div class="step-icon">💰</div>
-        <div><h4>Infant health subsidy — active</h4><p>Monthly payments will arrive in your shared wallet</p></div>
+        <div><h4>Infant health subsidy — active</h4><p>Monthly payments will arrive via EthioPay-IPS</p></div>
       </div>
       <div class="ob-step">
         <div class="step-icon">🏥</div>
@@ -1603,20 +1622,22 @@
       </div>
       <div class="ob-step">
         <div class="step-icon">💳</div>
-        <div><h4>Wallets linked via EthSwitch</h4><p>Baby's G2P payments flow directly to your account</p></div>
+        <div><h4>EthioPay accounts linked via IPS</h4><p>Baby's G2P disbursements flow directly to your EthioPay account</p></div>
       </div>
 
-      <div class="sec-label">Your Family Wallet</div>
-      <div class="wallet-card">
-        <div class="wc-label">Combined Family Balance</div>
-        <div class="wc-row">
-          <div>
-            <div class="wc-amount">ETB 900</div>
-            <div class="wc-sub">Almaz + Liya · Next payment: Apr 11</div>
+      <div class="sec-label">Your EthioPay — Family Disbursements</div>
+      <div style="background:linear-gradient(135deg,#1A6B32 0%,#2E8B46 100%);border-radius:16px;padding:18px 20px;color:white;margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="background:white;border-radius:7px;padding:3px 9px">
+            <span style="font-size:11px;font-weight:900;color:#1A6B32;letter-spacing:0.4px">EP EthioPay</span>
           </div>
-          <div style="text-align:right">
-            <div style="font-size:22px">👩‍👧</div>
-          </div>
+          <span style="font-size:10px;opacity:0.7">IPS · G2P</span>
+        </div>
+        <div style="font-size:11px;opacity:0.75;margin-bottom:3px">Combined Family Disbursement</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1">ETB 900</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px">
+          <div style="font-size:12px;opacity:0.7">Almaz + Liya · Next: Apr 11</div>
+          <div style="font-size:22px">👩‍👧</div>
         </div>
       </div>
     </div>
@@ -1636,17 +1657,18 @@
       <div class="hdr-right">🔔</div>
     </div>
     <div style="flex:1;overflow-y:auto;padding:16px;background:var(--surface)">
-      <div class="wallet-card">
-        <div class="wc-label">Family Wallet Balance</div>
-        <div class="wc-row">
-          <div>
-            <div class="wc-amount">ETB 900</div>
-            <div class="wc-sub">Next payment: April 11 · Almaz + Liya</div>
+      <div style="background:linear-gradient(135deg,#1A6B32 0%,#2E8B46 100%);border-radius:16px;padding:18px 20px;color:white;margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="background:white;border-radius:7px;padding:3px 9px">
+            <span style="font-size:11px;font-weight:900;color:#1A6B32;letter-spacing:0.4px">EP EthioPay</span>
           </div>
-          <div style="text-align:right">
-            <div style="font-size:22px">👩‍👧</div>
-            <div class="wc-id">2 enrolled</div>
-          </div>
+          <span style="font-size:10px;opacity:0.7">IPS · G2P</span>
+        </div>
+        <div style="font-size:11px;opacity:0.75;margin-bottom:3px">Family Disbursement Balance</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:38px;line-height:1">ETB 900</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px">
+          <div style="font-size:12px;opacity:0.7">Next payment: April 11 · Almaz + Liya</div>
+          <div style="font-size:11px;opacity:0.6;font-weight:700">2 enrolled</div>
         </div>
       </div>
 
@@ -1675,8 +1697,8 @@
           <div class="ts">First check-up due</div>
         </div>
         <div class="icon-tile">
-          <span class="ti">💰</span>
-          <div class="tl">My Wallet</div>
+          <span class="ti">💚</span>
+          <div class="tl">EthioPay</div>
           <div class="ts">ETB 900</div>
         </div>
         <div class="icon-tile">
@@ -1689,7 +1711,7 @@
     <div class="bottom-nav">
       <div class="bn-item active"><div class="bn-icon">🏠</div>Home</div>
       <div class="bn-item"><div class="bn-icon">🏥</div>Health</div>
-      <div class="bn-item"><div class="bn-icon">💳</div>Wallet</div>
+      <div class="bn-item"><div class="bn-icon">📂</div>Docs</div>
       <div class="bn-item"><div class="bn-icon">💬</div>Messages</div>
     </div>
   </div>
@@ -1708,7 +1730,7 @@
     { id:'s08', device:'phone',  title:'Welcome Screen',            phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
     { id:'s09', device:'phone',  title:'Onboarding: Your Phone',    phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
     { id:'s10', device:'phone',  title:'Onboarding: Your Health App', phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
-    { id:'s11', device:'phone',  title:'Onboarding: Your Wallet',   phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
+    { id:'s11', device:'phone',  title:'Onboarding: Documents & EthioPay', phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
     { id:'s12', device:'phone',  title:'Onboarding: Stay Connected',phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
     { id:'s13', device:'phone',  title:'e-Signature',               phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
     { id:'s14', device:'phone',  title:'Home Dashboard',            phase:'Phase 2 — Beneficiary Onboarding', phaseNum:2 },
